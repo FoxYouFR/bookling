@@ -7,3 +7,5 @@ export const getBorrower = (book, loans) => {
   });
   return borrower;
 };
+
+export const getBookFromID = (id, books) => books.find(book => book.id === id);

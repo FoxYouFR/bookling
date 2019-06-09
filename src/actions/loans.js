@@ -1,6 +1,7 @@
 import uuid from 'uuid';
+import moment from 'moment';
 
-export const addLoan = ({ bookID, borrower, lentAt = 0 }) = ({
+export const addLoan = ({ bookID, borrower, lentAt = 0 }) => ({
   type: 'ADD_LOAN',
   loan: {
     id: uuid(),

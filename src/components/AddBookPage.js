@@ -6,7 +6,7 @@ import { addBook } from '../actions/books';
 export class AddBookPage extends React.Component {
   onSubmit = book => {
     this.props.addBook(book);
-    this.props.history.push('/');
+    this.props.history.push('/library');
   };
   render() {
     return (

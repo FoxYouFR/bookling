@@ -84,7 +84,7 @@ export default class BookForm extends React.Component {
             <option value="bad">Bad</option>
             <option value="terrible">Terrible</option>
           </select>
-          <button type="submit">Add book</button>
+          <button type="submit">OK!</button>
         </form>
         { this.state.error && <p>{this.state.error}</p> }
       </div>
