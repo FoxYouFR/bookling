@@ -14,7 +14,7 @@ export const LibraryPage = props => (
         })
       )
     }
-    <NavLink to="/library/create">Create a book</NavLink>
+    <NavLink to="/library/create" className="btn btn-primary btn-lg">Create a book</NavLink>
   </div>
 );
 

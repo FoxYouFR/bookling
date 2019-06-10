@@ -71,20 +71,32 @@ export default class BookForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          <input type="text" placeholder="Title" autoFocus value={this.state.title} onChange={this.onTitleChange}/>
-          <input type="text" placeholder="Author" value={this.state.author} onChange={this.onAuthorChange}/>
+          <div className="form-group">
+            <input type="text" placeholder="Title" autoFocus value={this.state.title} onChange={this.onTitleChange} className="form-control"/>
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Author" value={this.state.author} onChange={this.onAuthorChange} className="form-control"/>
+          </div>
           <image src="" alt="Book cover"/>
-          <textarea placeholder="Add a description to the book" value={this.state.description} onChange={this.onDescriptionChange}></textarea>
-          <SingleDatePicker date={this.state.boughtOn} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange}
-                            numberOfMonths={1} isOutsideRange={day => false}/>
-          <input type="text" placeholder="Price" value={this.state.price} onChange={this.onPriceChange} />
-          <select value={this.state.condition} onChange={this.onConditionChange}>
-            <option value="excellent">Excellent</option>
-            <option value="good">Good</option>
-            <option value="bad">Bad</option>
-            <option value="terrible">Terrible</option>
-          </select>
-          <button type="submit">OK!</button>
+          <div className="form-group">
+            <textarea placeholder="Add a description to the book" value={this.state.description} onChange={this.onDescriptionChange} className="form-control"></textarea>
+          </div>
+          <div className="form-group">
+            <SingleDatePicker date={this.state.boughtOn} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange}
+                              numberOfMonths={1} isOutsideRange={day => false}/>
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Price" value={this.state.price} onChange={this.onPriceChange} className="form-control"/>
+          </div>
+          <div className="form-group">
+            <select value={this.state.condition} onChange={this.onConditionChange} className="custom-select">
+              <option value="excellent">Excellent</option>
+              <option value="good">Good</option>
+              <option value="bad">Bad</option>
+              <option value="terrible">Terrible</option>
+            </select>
+          </div>
+          <button type="submit" className="btn btn-primary btn-lg">OK!</button>
         </form>
         { this.state.error && <p>{this.state.error}</p> }
       </div>

@@ -14,7 +14,7 @@ export const DashboardPage = props => (
         })
       )
     }
-    <NavLink to="/create">Create a loan</NavLink>
+    <NavLink to="/create" className="btn btn-primary btn-lg">Create a loan</NavLink>
   </div>
 );
 

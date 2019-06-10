@@ -17,7 +17,7 @@ export class EditBookPage extends React.Component {
       <div>
         <h1>Edit book</h1>
         <BookForm onSubmit={this.onSubmit} book={this.props.book}/>
-        <button onClick={this.onRemove}>Remove the book</button>
+        <button onClick={this.onRemove} className="btn btn-secondary btn-lg">Remove the book</button>
       </div>
     );
   };

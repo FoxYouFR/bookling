@@ -3,19 +3,19 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { SingleDatePicker } from 'react-dates';
 import Select from 'react-select';
-import { getBookFromID } from '../selectors/books';
+import { getBookFromID, getBooksInLibrary } from '../selectors/books';
 
 export class LoanForm extends React.Component {
   constructor(props) {
     super(props);
-    const options = this.props.books.map(book => ({ value: book.id, label: book.title }));
+    const options = props.books.map(book => ({ value: book.id, label: book.title }));
     this.state = {
-      selectedOption: this.props.loan ? {
-        label: getBookFromID(this.props.loan.bookID, this.props.books).id,
-        value:  this.props.loan.bookID
+      selectedOption: props.loan ? {
+        label: getBookFromID(props.loan.bookID, props.books).title,
+        value:  props.loan.bookID
       } : null,
-      borrower: this.props.loan ? this.props.loan.borrower : '',
-      lentAt: this.props.loan ? moment(this.props.loan.lentAt) : moment(),
+      borrower: props.loan ? props.loan.borrower : '',
+      lentAt: props.loan ? moment(props.loan.lentAt) : moment(),
       options,
       calendarFocused: false,
       error: ''
@@ -51,13 +51,19 @@ export class LoanForm extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="ml-3">
         <form onSubmit={this.onSubmit}>
-          <Select value={this.state.selectedOption} onChange={this.onTitleChange} options={this.state.options}/>
-          <input type="text" placeholder="Borrower" value={this.state.borrower} onChange={this.onBorrowerChange}/>
-          <SingleDatePicker date={this.state.lentAt} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange}
-                            numberOfMonths={1} isOutsideRange={day => false}/>
-          <button type="submit">OK!</button>
+          <div className="form-group">
+            <Select value={this.state.selectedOption} onChange={this.onTitleChange} options={this.state.options}/>
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Borrower" value={this.state.borrower} onChange={this.onBorrowerChange} className="form-control"/>
+          </div>
+          <div className="form-group">
+            <SingleDatePicker date={this.state.lentAt} onDateChange={this.onDateChange} focused={this.state.calendarFocused} onFocusChange={this.onFocusChange}
+                              numberOfMonths={1} isOutsideRange={day => false}/>
+          </div>
+          <button type="submit" className="btn btn-primary btn-lg">OK!</button>
         </form>
         { this.state.error && <p>{this.state.error}</p> }
       </div>
@@ -65,8 +71,11 @@ export class LoanForm extends React.Component {
   };
 }
 
-const mapStateToProps = state => ({
-  books: state.books
-});
+const mapStateToProps = (state, props) => {
+  const books = getBooksInLibrary(state.books, state.loans);
+  return {
+    books: props.loan ? [...books, getBookFromID(props.loan.bookID, state.books)] : books
+  };
+};
 
 export default connect(mapStateToProps)(LoanForm)

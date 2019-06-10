@@ -9,3 +9,8 @@ export const getBorrower = (book, loans) => {
 };
 
 export const getBookFromID = (id, books) => books.find(book => book.id === id);
+
+export const getBooksInLibrary = (books, loans) => {
+  const lentBookID = loans.map(loan => loan.bookID);
+  return books.filter(book => !lentBookID.includes(book.id));
+}

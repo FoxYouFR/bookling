@@ -11,7 +11,7 @@ export class AddBookPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Add a book</h1>
+        <h1 className="h1">Add a book</h1>
         <BookForm onSubmit={this.onSubmit}/>
       </div>
     );

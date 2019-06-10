@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from '../components/Header';
 import DashboardPage from '../components/DashboardPage';
 import AddLoanPage from '../components/AddLoanPage';
+import EditLoanPage from '../components/EditLoanPage.js';
 import LibraryPage from '../components/LibraryPage';
 import AddBookPage from '../components/AddBookPage';
 import EditBookPage from '../components/EditBookPage';
@@ -18,6 +19,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={DashboardPage} exact={true} />
         <Route path="/create" component={AddLoanPage} />
+        <Route path="/edit/:id" component={EditLoanPage} />
         <Route path="/library" component={LibraryPage} exact={true} />
         <Route path="/library/create" component={AddBookPage} />
         <Route path="/library/edit/:id" component={EditBookPage} />
